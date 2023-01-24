@@ -1,0 +1,21 @@
+/* .body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+
+.button-container {
+    display: grid;
+    height: 69vh;
+    width: 69vw;
+    grid-template-areas: 
+    "a b c d"
+    "e f g h"
+    "i j k l"
+    "m n o p"
+    "q q q q";
+}
+
+.q {
+    width: 100%;
+}
