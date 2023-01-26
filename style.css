@@ -1,19 +1,43 @@
 .body-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.header {
+    border: 2px solid red;
+    margin: 8px 8px;
 }
 
 .button-container {
     display: grid;
     height: 69vh;
-    width: 69vw;
+    width: 50vw;
     grid-template-areas: 
     "a b c d"
     "e f g h"
     "i j k l"
     "m n o p"
     "q q q q";
+    border: 2px solid red;
+    padding: 8px 8px;
+    align-self: center;
+}
+
+.button-container button:not(.q) {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 0px;
+    margin: 4px;
+    width: 110px;
+    border: 2px solid green;
+}
+
+.q {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 0px;
+    margin: 4px;
+    border: 2px solid green;
 }
 
 .a {
