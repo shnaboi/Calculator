@@ -10,10 +10,21 @@
     margin: 8px 8px;
 }
 
+.calculator-container {
+    display: grid;
+}
+
+.screen {
+    height: 10vh;
+    border: 2px solid blue;
+    padding: 8px 8px;
+    align-self: center;
+}
+
 .button-container {
     display: grid;
     height: 69vh;
-    width: 50vw;
+    width: 52.5vw;
     grid-template-areas: 
     "a b c d"
     "e f g h"
@@ -28,8 +39,8 @@
 .button-container button:not(.q) {
     font-family: 'Courier New', Courier, monospace;
     padding: 0px;
-    margin: 4px;
-    width: 110px;
+    margin: .5vw;
+    width: 12vw;
     border: 2px solid green;
 }
 
