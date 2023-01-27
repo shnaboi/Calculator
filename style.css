@@ -21,6 +21,10 @@
     align-self: center;
 }
 
+.screen-bottom {
+    text-align: right;
+}
+
 .button-container {
     display: grid;
     height: 60vh;
