@@ -23,9 +23,10 @@
 
 .button-container {
     display: grid;
-    height: 69vh;
-    width: 52.5vw;
-    grid-template-areas: 
+    height: 60vh;
+    width: 40vw;
+    grid-template-areas:
+    "clear clear backspace backspace" 
     "a b c d"
     "e f g h"
     "i j k l"
@@ -36,20 +37,32 @@
     align-self: center;
 }
 
-.button-container button:not(.q) {
+.button-container button:not(.q):not(.clear):not(.backspace) {
     font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
     padding: 0px;
-    margin: .5vw;
-    width: 12vw;
-    border: 2px solid green;
+    margin: 4px;
+    height: 90%;
+    width: 90%;
+    border: 2px solid blue;
+    border-radius: 4px;
 }
 
-.q {
+.controls {
     font-family: 'Courier New', Courier, monospace;
     padding: 0px;
     margin: 4px;
-    border: 2px solid green;
+    border: 2px solid blue;
+    border-radius: 4px;
+    height: 80%;
 }
+
+/* .controls {
+    background-color: darkgreen;
+    color: white;
+    border: 2px solid blue;
+    border-radius: 4px;
+} */
 
 .a {
     grid-area: a;
@@ -101,4 +114,10 @@
 }
 .q {
     grid-area: q;
+}
+.clear {
+    grid-area: clear;
+}
+.backspace {
+    grid-area: backspace;
 }
