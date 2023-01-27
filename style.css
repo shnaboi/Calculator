@@ -30,7 +30,7 @@
     height: 60vh;
     width: 40vw;
     grid-template-areas:
-    "clear clear backspace backspace" 
+    "clear clear delete delete" 
     "a b c d"
     "e f g h"
     "i j k l"
@@ -41,7 +41,7 @@
     align-self: center;
 }
 
-.button-container button:not(.q):not(.clear):not(.backspace) {
+.button-container button:not(.q):not(.clear):not(.delete) {
     font-family: 'Courier New', Courier, monospace;
     font-size: 18px;
     padding: 0px;
@@ -52,13 +52,22 @@
     border-radius: 4px;
 }
 
+.number {
+    background-color: lightcyan;
+}
+
 .controls {
+    background-color:lightskyblue;
     font-family: 'Courier New', Courier, monospace;
     padding: 0px;
     margin: 4px;
     border: 2px solid blue;
     border-radius: 4px;
     height: 80%;
+}
+
+.mdas {
+    background-color: lightblue;
 }
 
 /* .controls {
@@ -122,6 +131,6 @@
 .clear {
     grid-area: clear;
 }
-.backspace {
-    grid-area: backspace;
+.delete {
+    grid-area: delete;
 }
