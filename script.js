@@ -9,7 +9,7 @@ numberButtons.forEach((button) =>
     button.addEventListener('click', () => appendNumber(button.textContent))
 );
 mdasButtons.forEach((button) => 
-    button.addEventListener('click', () => console.log('works'))
+    button.addEventListener('click', () => setOperation(button.textContent))
 );
 
 deleteKey.addEventListener('click', () => backspace());
@@ -18,7 +18,6 @@ clearKey.addEventListener('click', () => clear());
 let inputOne = '';
 let inputTwo = '';
 
-// ADD APPEND NUMBER FUNCTION
 function appendNumber(x) {
     screenBottom.textContent += x;
 }
@@ -31,7 +30,26 @@ function backspace() {
     screenBottom.textContent = screenBottom.textContent.slice(0, -1);
 }
 
-console.log(screenBottom.textContent[screenBottom.textContent.length - 1])
+function setOperation(mdas) {
+    switch (mdas) {
+        case "+":
+            operation = add;
+            console.log("add")
+            break;
+        case "-":
+            operation = add;
+            console.log("sub")
+            break;
+        case "x":
+            operation = add;
+            console.log("multiply")
+            break;
+        case "÷":
+            operation = add;
+            console.log("divide")
+            break;
+    }
+}
 
 // EDIT OPERATION FUNCTION TO CHANGE OPERATION
 function operation(op) {
