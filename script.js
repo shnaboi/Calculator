@@ -12,14 +12,14 @@ numberButtons.forEach((button) =>
 mdasButtons.forEach((button) => 
     button.addEventListener('click', () => setOperation(button.textContent))
 );
-calculate.addEventListener('click', () => equalsButton());
 
+calculate.addEventListener('click', () => equalsButton());
 deleteKey.addEventListener('click', () => backspace());
 clearKey.addEventListener('click', () => clear());
 
 let inputOne = '';
 let inputTwo = '';
-let operation = 'null'
+let operation = null;
 let toggleResetScreen = false;
 
 function appendNumber(x) {
@@ -30,6 +30,9 @@ function appendNumber(x) {
 function clear() {
     screenBottom.textContent = '';
     screenTop.textContent = '';
+    inputOne = '';
+    inputTwo = '';
+    operation = null;
 }
 function backspace() {
     screenBottom.textContent = screenBottom.textContent.slice(0, -1);
@@ -37,7 +40,6 @@ function backspace() {
 function resetScreenBottom() {
     screenBottom.textContent = '';
     toggleResetScreen = false;
-
 }
 function setOperation(mdas) {
         inputOne = screenBottom.textContent;
@@ -45,19 +47,19 @@ function setOperation(mdas) {
         toggleResetScreen = true;
     switch (mdas) {
         case "+":
-            operation = add;
+            operation = "+";
             console.log("add")
             break;
         case "-":
-            operation = subtract;
+            operation = "-";
             console.log("sub")
             break;
         case "x":
-            operation = multiply;
+            operation = "x";
             console.log("multiply")
             break;
         case "÷":
-            operation = divide;
+            operation = "÷";
             console.log("divide")
             break;
     }
@@ -77,7 +79,11 @@ function operate(op, x, y) {
 }
 
 function equalsButton() {
-    console.log(operate(operation, inputOne, inputTwo))
+    if (operation !== null) {
+        inputTwo = screenBottom.textContent;
+    }
+    screenBottom.textContent = operate(operation, inputOne, inputTwo);
+    console.log(operate(operation, inputOne, inputTwo));
 }
 
 function add(x, y) {
@@ -96,7 +102,7 @@ function divide(x, y) {
     return x / y;
 }
 
-// SECOND NUMBER (inputTwo) FUNCTIONALITY
-// EQUALS BUTTON RETURNS THE EQUATION
-// MAKE IT STACKABLE (keep pushing equals button)
+
+// MAKE IT STACKABLE (it is now, but answer doesn't display in screenTop)
 // FIGURE OUT +/- TO NUMBERS
+
