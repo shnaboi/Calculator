@@ -81,12 +81,13 @@ function operate(op, x, y) {
 }
 
 function equalsButton() {
-    if (operation !== null) {
+    if (operation !== null && inputTwo == '') {
         inputTwo = screenBottom.textContent;
     }
     screenTop.textContent = `${inputOne} ${operation} ${inputTwo}`;
     screenBottom.textContent = operate(operation, inputOne, inputTwo);
     console.log(operate(operation, inputOne, inputTwo));
+    inputOne = screenBottom.textContent;
 }
 
 function add(x, y) {
@@ -105,8 +106,5 @@ function divide(x, y) {
     return x / y;
 }
 
-// screenTop needs to reflect `inputOne operation inputTwo` upon equals press
-
-// MAKE IT STACKABLE (it is now, but answer doesn't display in screenTop)
 // FIGURE OUT +/- TO NUMBERS
 
