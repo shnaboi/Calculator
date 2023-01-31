@@ -27,9 +27,9 @@ function clear() {
     screenBottom.textContent = '';
 }
 
-// function backspace() {
-//     screenBottom.textContent.slice(0, -1);
-// }
+function backspace() {
+    screenBottom.textContent = screenBottom.textContent.slice(0, -1);
+}
 
 console.log(screenBottom.textContent[screenBottom.textContent.length - 1])
 
