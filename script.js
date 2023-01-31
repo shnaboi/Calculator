@@ -4,6 +4,7 @@ const numberButtons = document.querySelectorAll(".number");
 const mdasButtons = document.querySelectorAll(".mdas")
 const deleteKey = document.querySelector(".delete")
 const clearKey = document.querySelector(".clear")
+const calculate = document.querySelector(".q")
 
 numberButtons.forEach((button) => 
     button.addEventListener('click', () => appendNumber(button.textContent))
@@ -11,6 +12,7 @@ numberButtons.forEach((button) =>
 mdasButtons.forEach((button) => 
     button.addEventListener('click', () => setOperation(button.textContent))
 );
+calculate.addEventListener('click', () => equalsButton());
 
 deleteKey.addEventListener('click', () => backspace());
 clearKey.addEventListener('click', () => clear());
@@ -25,6 +27,7 @@ function appendNumber(x) {
 
 function clear() {
     screenBottom.textContent = '';
+    screenTop.textContent = '';
 }
 
 function backspace() {
@@ -32,7 +35,10 @@ function backspace() {
 }
 
 function setOperation(mdas) {
-    screenTop.textContent = `${screenBottom.textContent} ${mdas}`
+    if (inputOne == '') {
+        inputOne = screenBottom.textContent;
+        screenTop.textContent = `${inputOne} ${mdas}`;
+    }
     switch (mdas) {
         case "+":
             operation = add;
@@ -67,7 +73,7 @@ function operate(op, x, y) {
 }
 
 function equalsButton() {
-
+    console.log(operate(operation, inputOne, inputTwo))
 }
 
 // EDIT OPERATION FUNCTION TO CHANGE OPERATION
