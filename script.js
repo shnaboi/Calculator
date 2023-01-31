@@ -21,6 +21,7 @@ let inputOne = '';
 let inputTwo = '';
 let operation = null;
 let toggleResetScreen = false;
+let inputTwoReset = false;
 
 function appendNumber(x) {
     if (toggleResetScreen) 
@@ -45,6 +46,9 @@ function setOperation(mdas) {
         inputOne = screenBottom.textContent;
         screenTop.textContent = `${inputOne} ${mdas}`;
         toggleResetScreen = true;
+        if (inputTwoReset == true) {
+            inputTwo = '';
+        }
     switch (mdas) {
         case "+":
             operation = "+";
@@ -63,6 +67,7 @@ function setOperation(mdas) {
             console.log("divide")
             break;
     }
+    inputTwoReset = true;
 }
 
 function operate(op, x, y) {
@@ -83,10 +88,10 @@ function operate(op, x, y) {
 function equalsButton() {
     if (operation !== null && inputTwo == '') {
         inputTwo = screenBottom.textContent;
-    }
+    } 
     screenTop.textContent = `${inputOne} ${operation} ${inputTwo}`;
     screenBottom.textContent = operate(operation, inputOne, inputTwo);
-    console.log(operate(operation, inputOne, inputTwo));
+    console.log(`${inputOne} ${operation} ${inputTwo}`);
     inputOne = screenBottom.textContent;
 }
 
