@@ -93,6 +93,7 @@ function equalsButton() {
     screenBottom.textContent = operate(operation, inputOne, inputTwo);
     console.log(`${inputOne} ${operation} ${inputTwo}`);
     inputOne = screenBottom.textContent;
+    toggleResetScreen = true;
 }
 
 function add(x, y) {
@@ -110,6 +111,9 @@ function multiply(x, y) {
 function divide(x, y) {
     return x / y;
 }
+
+// clicking numbers after equation is returned adds them to answer
+// ^^^ this should start a new equation
 
 // FIGURE OUT +/- TO NUMBERS
 
