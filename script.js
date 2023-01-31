@@ -20,40 +20,44 @@ clearKey.addEventListener('click', () => clear());
 let inputOne = '';
 let inputTwo = '';
 let operation = 'null'
+let toggleResetScreen = false;
 
 function appendNumber(x) {
+    if (toggleResetScreen) 
+    resetScreenBottom();
     screenBottom.textContent += x;
 }
-
 function clear() {
     screenBottom.textContent = '';
     screenTop.textContent = '';
 }
-
 function backspace() {
     screenBottom.textContent = screenBottom.textContent.slice(0, -1);
 }
+function resetScreenBottom() {
+    screenBottom.textContent = '';
+    toggleResetScreen = false;
 
+}
 function setOperation(mdas) {
-    if (inputOne == '') {
         inputOne = screenBottom.textContent;
         screenTop.textContent = `${inputOne} ${mdas}`;
-    }
+        toggleResetScreen = true;
     switch (mdas) {
         case "+":
             operation = add;
             console.log("add")
             break;
         case "-":
-            operation = add;
+            operation = subtract;
             console.log("sub")
             break;
         case "x":
-            operation = add;
+            operation = multiply;
             console.log("multiply")
             break;
         case "÷":
-            operation = add;
+            operation = divide;
             console.log("divide")
             break;
     }
@@ -76,22 +80,6 @@ function equalsButton() {
     console.log(operate(operation, inputOne, inputTwo))
 }
 
-// EDIT OPERATION FUNCTION TO CHANGE OPERATION
-// function operation(op) {
-//     if (op === '+') {
-//         return add(x, y)
-//     }
-//     if (op === '-') {
-//         return subtract(x, y)
-//     }
-//     if (op === 'x') {
-//         return multiply(x, y)
-//     }
-//     if (op === '÷') {
-//         return divide(x, y)
-//     }
-// }
-
 function add(x, y) {
 	return x + y;
 };
@@ -108,5 +96,7 @@ function divide(x, y) {
     return x / y;
 }
 
-// backspace function
-// Clear function
+// SECOND NUMBER (inputTwo) FUNCTIONALITY
+// EQUALS BUTTON RETURNS THE EQUATION
+// MAKE IT STACKABLE (keep pushing equals button)
+// FIGURE OUT +/- TO NUMBERS
