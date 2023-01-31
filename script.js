@@ -66,6 +66,8 @@ function setOperation(mdas) {
 }
 
 function operate(op, x, y) {
+    x = Number(x)
+    y = Number(y)
     switch (op) {
         case "+":
             return add(x,y)
@@ -82,6 +84,7 @@ function equalsButton() {
     if (operation !== null) {
         inputTwo = screenBottom.textContent;
     }
+    screenTop.textContent = `${inputOne} ${operation} ${inputTwo}`;
     screenBottom.textContent = operate(operation, inputOne, inputTwo);
     console.log(operate(operation, inputOne, inputTwo));
 }
@@ -102,6 +105,7 @@ function divide(x, y) {
     return x / y;
 }
 
+// screenTop needs to reflect `inputOne operation inputTwo` upon equals press
 
 // MAKE IT STACKABLE (it is now, but answer doesn't display in screenTop)
 // FIGURE OUT +/- TO NUMBERS
