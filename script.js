@@ -17,6 +17,7 @@ clearKey.addEventListener('click', () => clear());
 
 let inputOne = '';
 let inputTwo = '';
+let operation = 'null'
 
 function appendNumber(x) {
     screenBottom.textContent += x;
@@ -31,6 +32,7 @@ function backspace() {
 }
 
 function setOperation(mdas) {
+    screenTop.textContent = `${screenBottom.textContent} ${mdas}`
     switch (mdas) {
         case "+":
             operation = add;
@@ -51,35 +53,52 @@ function setOperation(mdas) {
     }
 }
 
-// EDIT OPERATION FUNCTION TO CHANGE OPERATION
-function operation(op) {
-    if (op === '+') {
-        return add(x, y)
-    }
-    if (op === '-') {
-        return subtract(x, y)
-    }
-    if (op === 'x') {
-        return multiply(x, y)
-    }
-    if (op === '÷') {
-        return divide(x, y)
+function operate(op, x, y) {
+    switch (op) {
+        case "+":
+            return add(x,y)
+        case "-":
+            return subtract(x,y)
+        case "x":
+            return multiply(x,y)
+        case "÷":
+            return divide(x,y)
     }
 }
 
-const add = function(x, y) {
+function equalsButton() {
+
+}
+
+// EDIT OPERATION FUNCTION TO CHANGE OPERATION
+// function operation(op) {
+//     if (op === '+') {
+//         return add(x, y)
+//     }
+//     if (op === '-') {
+//         return subtract(x, y)
+//     }
+//     if (op === 'x') {
+//         return multiply(x, y)
+//     }
+//     if (op === '÷') {
+//         return divide(x, y)
+//     }
+// }
+
+function add(x, y) {
 	return x + y;
 };
 
-const subtract = function(x, y) {
+function subtract(x, y) {
     return x - y;
 };
 
-const multiply = function(x, y) {
+function multiply(x, y) {
     return x * y;
 }
 
-const divide = function(x, y) {
+function divide(x, y) {
     return x / y;
 }
 
