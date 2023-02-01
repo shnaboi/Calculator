@@ -43,31 +43,36 @@ function resetScreenBottom() {
     toggleResetScreen = false;
 }
 function setOperation(mdas) {
-        inputOne = screenBottom.textContent;
-        screenTop.textContent = `${inputOne} ${mdas}`;
-        toggleResetScreen = true;
-        if (inputTwoReset == true) {
-            inputTwo = '';
-        }
+    // call equalsButton() if operator is not null
+    if (operation == "+" || 
+        operation == "-" ||
+        operation == "x" ||
+        operation == "÷") {
+        equalsButton();
+    }
+    inputOne = screenBottom.textContent;
+    screenTop.textContent = `${inputOne} ${mdas}`;
+    toggleResetScreen = true;
+    // comment out this if statement?
+    // if (inputTwoReset == true) {
+    //     inputTwo = '';
+    // }
     switch (mdas) {
         case "+":
             operation = "+";
-            console.log("add")
             break;
         case "-":
             operation = "-";
-            console.log("sub")
             break;
         case "x":
             operation = "x";
-            console.log("multiply")
             break;
         case "÷":
             operation = "÷";
-            console.log("divide")
             break;
     }
-    inputTwoReset = true;
+    if (operation)
+    inputTwo = '';
 }
 
 function operate(op, x, y) {
@@ -86,14 +91,16 @@ function operate(op, x, y) {
 }
 
 function equalsButton() {
-    if (operation !== null && inputTwo == '') {
+    // if (operation !== null && inputTwo == '') {
         inputTwo = screenBottom.textContent;
-    } 
+    // } 
     screenTop.textContent = `${inputOne} ${operation} ${inputTwo}`;
     screenBottom.textContent = operate(operation, inputOne, inputTwo);
     console.log(`${inputOne} ${operation} ${inputTwo}`);
+    // after operation, inputOne needs to be change correctly HERE to chain calcs
     inputOne = screenBottom.textContent;
     toggleResetScreen = true;
+    operation = null;
 }
 
 function add(x, y) {
@@ -109,11 +116,15 @@ function multiply(x, y) {
 }
 
 function divide(x, y) {
+    if (y === 0) {
+        screenTop.textContent = 'Error';
+        return 'Cannot divide by 0';
+    }
     return x / y;
 }
 
-// clicking numbers after equation is returned adds them to answer
-// ^^^ this should start a new equation
+// need to change inputOne correctly 
+// ^^^ in order to chain calculations together by clicking mdas butts
 
 // FIGURE OUT +/- TO NUMBERS
 
