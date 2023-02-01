@@ -5,6 +5,7 @@ const mdasButtons = document.querySelectorAll(".mdas")
 const deleteKey = document.querySelector(".delete")
 const clearKey = document.querySelector(".clear")
 const calculate = document.querySelector(".q")
+const signKey = document.querySelector(".m")
 
 numberButtons.forEach((button) => 
     button.addEventListener('click', () => appendNumber(button.textContent))
@@ -16,6 +17,7 @@ mdasButtons.forEach((button) =>
 calculate.addEventListener('click', () => equalsButton());
 deleteKey.addEventListener('click', () => backspace());
 clearKey.addEventListener('click', () => clear());
+signKey.addEventListener('click', () => signToggle());
 
 let inputOne = '';
 let inputTwo = '';
@@ -38,12 +40,14 @@ function clear() {
 function backspace() {
     screenBottom.textContent = screenBottom.textContent.slice(0, -1);
 }
+function signToggle() {
+    screenBottom.textContent *= -1;
+}
 function resetScreenBottom() {
     screenBottom.textContent = '';
     toggleResetScreen = false;
 }
 function setOperation(mdas) {
-    // call equalsButton() if operator is not null
     if (operation == "+" || 
         operation == "-" ||
         operation == "x" ||
@@ -53,10 +57,6 @@ function setOperation(mdas) {
     inputOne = screenBottom.textContent;
     screenTop.textContent = `${inputOne} ${mdas}`;
     toggleResetScreen = true;
-    // comment out this if statement?
-    // if (inputTwoReset == true) {
-    //     inputTwo = '';
-    // }
     switch (mdas) {
         case "+":
             operation = "+";
@@ -91,16 +91,15 @@ function operate(op, x, y) {
 }
 
 function equalsButton() {
-    // if (operation !== null && inputTwo == '') {
+    if (operation !== null && inputTwo == '') {
         inputTwo = screenBottom.textContent;
-    // } 
+    } 
     screenTop.textContent = `${inputOne} ${operation} ${inputTwo}`;
     screenBottom.textContent = operate(operation, inputOne, inputTwo);
     console.log(`${inputOne} ${operation} ${inputTwo}`);
-    // after operation, inputOne needs to be change correctly HERE to chain calcs
     inputOne = screenBottom.textContent;
     toggleResetScreen = true;
-    operation = null;
+    // operation = null;
 }
 
 function add(x, y) {
@@ -122,9 +121,6 @@ function divide(x, y) {
     }
     return x / y;
 }
-
-// need to change inputOne correctly 
-// ^^^ in order to chain calculations together by clicking mdas butts
 
 // FIGURE OUT +/- TO NUMBERS
 
