@@ -48,12 +48,14 @@ function resetScreenBottom() {
     toggleResetScreen = false;
 }
 function setOperation(mdas) {
+    // Chains together equations WITHOUT hitting equals every time
     if (operation == "+" || 
         operation == "-" ||
         operation == "x" ||
         operation == "÷") {
-        equalsButton();
+        equalsButton(mdas);
     }
+    // Chains together equations WITHOUT hitting equals every time
     inputOne = screenBottom.textContent;
     screenTop.textContent = `${inputOne} ${mdas}`;
     toggleResetScreen = true;
@@ -71,8 +73,10 @@ function setOperation(mdas) {
             operation = "÷";
             break;
     }
+    // Chains together equations WITHOUT hitting equals every time
     if (operation)
     inputTwo = '';
+    // Chains together equations WITHOUT hitting equals every time
 }
 
 function operate(op, x, y) {
@@ -90,16 +94,17 @@ function operate(op, x, y) {
     }
 }
 
-function equalsButton() {
+function equalsButton(mdas) {
+    // This starts init equation
     if (operation !== null && inputTwo == '') {
         inputTwo = screenBottom.textContent;
     } 
-    screenTop.textContent = `${inputOne} ${operation} ${inputTwo}`;
+    // This starts init equation
+    screenTop.textContent = `${inputOne} ${operation} ${inputTwo} =`;
     screenBottom.textContent = operate(operation, inputOne, inputTwo);
     console.log(`${inputOne} ${operation} ${inputTwo}`);
-    inputOne = screenBottom.textContent;
+    inputOne = operate(operation, inputOne, inputTwo)
     toggleResetScreen = true;
-    // operation = null;
 }
 
 function add(x, y) {
@@ -122,5 +127,6 @@ function divide(x, y) {
     return x / y;
 }
 
-// FIGURE OUT +/- TO NUMBERS
-
+// KNOWN BUGS: 
+// pressing mdas buttons after equals causes incorrect activity
+// pressing consecutive mdas buttons causes equations to exponentiolly grow
