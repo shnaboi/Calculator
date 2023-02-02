@@ -31,6 +31,7 @@ let operation = null;
 let toggleResetScreen = false;
 let inputTwoReset = false;
 let mathTrigger = false;
+let signChange = false;
 
 function appendNumber(x) {
     if (toggleResetScreen) 
@@ -49,7 +50,16 @@ function backspace() {
     screenBottom.textContent = screenBottom.textContent.slice(0, -1);
 }
 function signToggle() {
-    screenBottom.textContent *= -1;
+    // if (screenBottom.textContent == 0) {
+    //     return
+    // }
+    // if (signChange == false) {
+    //     signChange = true;
+    // } else {
+    //     signChange = false
+    // }
+    screenBottom.textContent -= (screenBottom.textContent * 2)
+    console.log(signChange)
 }
 function resetScreenBottom() {
     screenBottom.textContent = '';
@@ -72,16 +82,15 @@ function setOperation(mdas) {
 }
 
 function doMath() {
-
     if (operation !== null && inputTwo == '') {
         inputTwo = screenBottom.textContent;
         console.log('operation is null and inputTwo was empty')
-    } 
-    if (operation !== null && 
-        inputOne !== '' && 
-        inputTwo !== '') {
     }
-
+    if (operation == null) {
+        inputOne = screenBottom.textContent;
+        screenTop.textContent = `${inputOne} = ${inputOne}`
+        return
+    }
     // MATH
     screenTop.textContent = `${inputOne} ${operation} ${inputTwo} =`;
     console.log(`inputOne = ${inputOne}`)
@@ -129,4 +138,6 @@ function divide(x, y) {
 }
 
 // KNOWN BUGS: 
-// Changing sign of numbers after equals don't always stack correctly
+// Changing sign of numbers between equals don't always stack correctly
+
+// i need to do math on screenBottom.textContent or inputOne
