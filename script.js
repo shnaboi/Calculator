@@ -30,10 +30,12 @@ let inputTwo = '';
 let operation = null;
 let toggleResetScreen = false;
 let inputTwoReset = false;
+let mathTrigger = false;
 
 function appendNumber(x) {
     if (toggleResetScreen) 
     resetScreenBottom();
+    mathTrigger = true;
     screenBottom.textContent += x;
 }
 function clear() {
@@ -55,19 +57,17 @@ function resetScreenBottom() {
 }
 function setOperation(mdas) {
     if (inputOne !== '' && inputTwo == '') {
-
+        if (mathTrigger) {
             doMath();
-
+        }
     }
-
+    mathTrigger = false;
     inputOne = screenBottom.textContent;
     operation = mdas;
     screenTop.textContent = `${inputOne} ${mdas}`;
     toggleResetScreen = true;
     // Chains together equations WITHOUT hitting equals every time
-    if (operation !== null) {
-        inputTwo = '';
-    }
+    inputTwo = '';
     // Chains together equations WITHOUT hitting equals every time
 }
 
@@ -129,15 +129,4 @@ function divide(x, y) {
 }
 
 // KNOWN BUGS: 
-// pressing consecutive mdas buttons causes equations to exponentiolly grow
-
-// !!!
-// pressing operator should only do math
-// if
-// there is an operator, inputOne value, and inputTwo value
-// pressing an operator should reset inputTwo value
-
-// !!!
-// you should be able to press consecutive operator buttons
-// without any math happening
-// inputTwo stays same when chaining equals presses
+// Changing sign of numbers after equals don't always stack correctly
