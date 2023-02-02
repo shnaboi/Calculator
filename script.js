@@ -19,6 +19,12 @@ deleteKey.addEventListener('click', () => backspace());
 clearKey.addEventListener('click', () => clear());
 signKey.addEventListener('click', () => signToggle());
 
+function equalsButton() {
+    toggleResetScreen = true;
+    doMath();
+    inputTwoReset = true;
+}
+
 let inputOne = '';
 let inputTwo = '';
 let operation = null;
@@ -48,35 +54,42 @@ function resetScreenBottom() {
     toggleResetScreen = false;
 }
 function setOperation(mdas) {
-    // Chains together equations WITHOUT hitting equals every time
-    if (operation == "+" || 
-        operation == "-" ||
-        operation == "x" ||
-        operation == "÷") {
-        equalsButton(mdas);
+    if (inputOne !== '' && inputTwo == '') {
+
+            console.log('works')
+            doMath();
+
     }
-    // Chains together equations WITHOUT hitting equals every time
+
     inputOne = screenBottom.textContent;
+    operation = mdas;
     screenTop.textContent = `${inputOne} ${mdas}`;
     toggleResetScreen = true;
-    switch (mdas) {
-        case "+":
-            operation = "+";
-            break;
-        case "-":
-            operation = "-";
-            break;
-        case "x":
-            operation = "x";
-            break;
-        case "÷":
-            operation = "÷";
-            break;
+    // Chains together equations WITHOUT hitting equals every time
+    if (operation !== null) {
+        inputTwo = '';
     }
     // Chains together equations WITHOUT hitting equals every time
-    if (operation)
-    inputTwo = '';
-    // Chains together equations WITHOUT hitting equals every time
+}
+
+function doMath() {
+    // This starts init equation
+    if (operation !== null && inputTwo == '') {
+        inputTwo = screenBottom.textContent;
+    } 
+    if (operation !== null && 
+        inputOne !== '' && 
+        inputTwo !== '') {
+
+        }
+    // This starts init equation
+    screenTop.textContent = `${inputOne} ${operation} ${inputTwo} =`;
+    console.log(`inputOne = ${inputOne}`)
+    inputOne = operate(operation, inputOne, inputTwo);
+    screenBottom.textContent = inputOne;
+    console.log(`inputTwo = ${inputTwo}`)
+    console.log(`operator = ${operation}`)
+    console.log(`answer = ${inputOne}`)
 }
 
 function operate(op, x, y) {
@@ -92,19 +105,6 @@ function operate(op, x, y) {
         case "÷":
             return divide(x,y)
     }
-}
-
-function equalsButton(mdas) {
-    // This starts init equation
-    if (operation !== null && inputTwo == '') {
-        inputTwo = screenBottom.textContent;
-    } 
-    // This starts init equation
-    screenTop.textContent = `${inputOne} ${operation} ${inputTwo} =`;
-    screenBottom.textContent = operate(operation, inputOne, inputTwo);
-    console.log(`${inputOne} ${operation} ${inputTwo}`);
-    inputOne = operate(operation, inputOne, inputTwo)
-    toggleResetScreen = true;
 }
 
 function add(x, y) {
@@ -130,3 +130,9 @@ function divide(x, y) {
 // KNOWN BUGS: 
 // pressing mdas buttons after equals causes incorrect activity
 // pressing consecutive mdas buttons causes equations to exponentiolly grow
+
+// !!!
+// pressing operator should only do math
+// if
+// there is an operator, inputOne value, and inputTwo value
+// pressing an operator should reset inputTwo value
