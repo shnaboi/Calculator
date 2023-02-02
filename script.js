@@ -56,7 +56,6 @@ function resetScreenBottom() {
 function setOperation(mdas) {
     if (inputOne !== '' && inputTwo == '') {
 
-            console.log('works')
             doMath();
 
     }
@@ -73,16 +72,17 @@ function setOperation(mdas) {
 }
 
 function doMath() {
-    // This starts init equation
+
     if (operation !== null && inputTwo == '') {
         inputTwo = screenBottom.textContent;
+        console.log('operation is null and inputTwo was empty')
     } 
     if (operation !== null && 
         inputOne !== '' && 
         inputTwo !== '') {
+    }
 
-        }
-    // This starts init equation
+    // MATH
     screenTop.textContent = `${inputOne} ${operation} ${inputTwo} =`;
     console.log(`inputOne = ${inputOne}`)
     inputOne = operate(operation, inputOne, inputTwo);
@@ -122,13 +122,13 @@ function multiply(x, y) {
 function divide(x, y) {
     if (y === 0) {
         screenTop.textContent = 'Error';
-        return 'Cannot divide by 0';
+        alert('Cannot divide by 0');
+        return
     }
     return x / y;
 }
 
 // KNOWN BUGS: 
-// pressing mdas buttons after equals causes incorrect activity
 // pressing consecutive mdas buttons causes equations to exponentiolly grow
 
 // !!!
@@ -136,3 +136,8 @@ function divide(x, y) {
 // if
 // there is an operator, inputOne value, and inputTwo value
 // pressing an operator should reset inputTwo value
+
+// !!!
+// you should be able to press consecutive operator buttons
+// without any math happening
+// inputTwo stays same when chaining equals presses
