@@ -28,6 +28,7 @@ function equalsButton() {
 let inputOne = '';
 let inputTwo = '';
 let operation = null;
+let answer = ''
 let toggleResetScreen = false;
 let inputTwoReset = false;
 let mathTrigger = false;
@@ -39,6 +40,7 @@ function appendNumber(x) {
     mathTrigger = true;
     screenBottom.textContent += x;
 }
+
 function clear() {
     screenBottom.textContent = '';
     screenTop.textContent = '';
@@ -46,9 +48,11 @@ function clear() {
     inputTwo = '';
     operation = null;
 }
+
 function backspace() {
     screenBottom.textContent = screenBottom.textContent.slice(0, -1);
 }
+
 function signToggle() {
     screenBottom.textContent -= (screenBottom.textContent * 2)
     if (inputOneToggle) {
@@ -56,25 +60,25 @@ function signToggle() {
         inputOneToggle = false;
     }
 }
+
 function resetScreenBottom() {
     screenBottom.textContent = '';
     toggleResetScreen = false;
 }
+
 function setOperation(mdas) {
     if (inputOne !== '' && inputTwo == '') {
         if (mathTrigger) {
             doMath();
         }
     }
+    inputOne = screenBottom.textContent;
     inputOneToggle = false;
     mathTrigger = false;
-    inputOne = screenBottom.textContent;
     operation = mdas;
     screenTop.textContent = `${inputOne} ${mdas}`;
     toggleResetScreen = true;
-    // Chains together equations WITHOUT hitting equals every time
     inputTwo = '';
-    // Chains together equations WITHOUT hitting equals every time
 }
 
 function doMath() {
@@ -86,11 +90,17 @@ function doMath() {
         screenTop.textContent = `${inputOne} = ${inputOne}`
         return
     }
+    if (mathTrigger && inputOneToggle) {
+        inputOne = screenBottom.textContent;
+        mathTrigger = false;
+        inputOneToggle = false;
+    }
     // MATH
     screenTop.textContent = `${inputOne} ${operation} ${inputTwo} =`;
     // console.log(`inputOne = ${inputOne}`)
     inputOne = operate(operation, inputOne, inputTwo);
     screenBottom.textContent = inputOne;
+    inputOneToggle = true;
     // inputOneToggle = true;
     // console.log(`inputTwo = ${inputTwo}`)
     // console.log(`operator = ${operation}`)
@@ -126,6 +136,7 @@ function multiply(x, y) {
 
 function divide(x, y) {
     if (y === 0) {
+        clear();
         screenTop.textContent = 'Error';
         alert('Cannot divide by 0');
         return
@@ -134,3 +145,4 @@ function divide(x, y) {
 }
 
 // KNOWN BUGS: 
+// decimals
