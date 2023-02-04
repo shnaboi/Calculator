@@ -19,27 +19,12 @@ deleteKey.addEventListener('click', () => backspace());
 clearKey.addEventListener('click', () => clear());
 signKey.addEventListener('click', () => signToggle());
 
-function equalsButton() {
-    toggleResetScreen = true;
-    doMath();
-    inputTwoReset = true;
-}
-
 let inputOne = '';
 let inputTwo = '';
 let operation = null;
-let answer = ''
 let toggleResetScreen = false;
-let inputTwoReset = false;
 let mathTrigger = false;
 let inputOneToggle = false;
-
-function appendNumber(x) {
-    if (toggleResetScreen) 
-    resetScreenBottom();
-    mathTrigger = true;
-    screenBottom.textContent += x;
-}
 
 function clear() {
     screenBottom.textContent = '';
@@ -51,6 +36,18 @@ function clear() {
 
 function backspace() {
     screenBottom.textContent = screenBottom.textContent.slice(0, -1);
+}
+
+function appendNumber(x) {
+    if (toggleResetScreen) 
+    resetScreenBottom();
+    mathTrigger = true;
+    screenBottom.textContent += x;
+}
+
+function equalsButton() {
+    toggleResetScreen = true;
+    doMath();
 }
 
 function signToggle() {
@@ -95,18 +92,14 @@ function doMath() {
         mathTrigger = false;
         inputOneToggle = false;
     }
-    // MATH
+    // EXECUTE MATH
     screenTop.textContent = `${inputOne} ${operation} ${inputTwo} =`;
-    // console.log(`inputOne = ${inputOne}`)
     inputOne = operate(operation, inputOne, inputTwo);
     screenBottom.textContent = inputOne;
     inputOneToggle = true;
-    // inputOneToggle = true;
-    // console.log(`inputTwo = ${inputTwo}`)
-    // console.log(`operator = ${operation}`)
-    // console.log(`answer = ${inputOne}`)
 }
 
+// Math functions
 function operate(op, x, y) {
     x = Number(x)
     y = Number(y)
@@ -145,4 +138,4 @@ function divide(x, y) {
 }
 
 // KNOWN BUGS: 
-// decimals
+// long decimals
